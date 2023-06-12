@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>咖啡馆</title>
+		<meta name="format-detection" content="telephone=yes" />
+		<link href="css/indexStyle.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+			});
+		</script>
+		<style>
+			.box {
+				width: 50px;
+				height: 50px;
+				background-image: url(static/music/audio.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				display: block;
+				cursor: pointer;
+				margin: 0px auto;
+				z-index: 1000;
+				position: fixed;
+				top: 0px;
+				right: 0px;
+			}
+
+			.boxPlay {
+				animation: rotateBox 4s linear infinite;
+			}
+
+			@keyframes rotateBox {
+				from {
+					transform: rotateZ(0deg);
+				}
+
+				to {
+					transform: rotateZ(360deg);
+				}
+			}
+
+			
+		</style>
+	</head>
+	<body>
+		<audio src="static/music/xr.mp3" loop="loop" autoplay="autoplay"></audio>
+		<div class="barrier">
+			<div class="barrierDialog">
+				暂未对PC端开放
+			</div>
+		</div>
+		<div class="box"></div>
+		<div class="pages">
+			<div class="page active" id="home">
+				<div class="content">
+					<img src="static/bar/home/rule/1-11.png" class="homeUser-1" />
+					<img src="static/bar/home/rule/2-11.png" class="homeUser-2" />
+					<img src="static/bar/home/rule/3-11.png" class="homeUser-3" />
+					<button class="btn" id="next">欢迎光临</button>
+				</div>
+			</div>
+			<div class="page " id="select">
+				<div class="content">
+					<div class="selectBlock-1">
+
+					</div>
+					<div class="selectBlock-2">
+
+					</div>
+					<div class="selectBlock-3">
+
+					</div>
+					<div class="selectBlock-4">
+
+					</div>
+					<button class="btn" id="select1">运动男孩</button>
+					<button class="btn" id="select2">甜美女孩</button>
+					<button class="btn" id="select3">商务男孩</button>
+					<button class="btn" id="select4">职场女孩</button>
+				</div>
+			</div>
+			<div class="page " id="scene">
+				<div class="content">
+					<div class="sceneUser1 sceneUser"></div>
+					<div class="sceneUser2 sceneUser"></div>
+					<div class="sceneUser3 sceneUser"></div>
+					<button class="btn" id="scene1">上学</button>
+					<button class="btn" id="scene2">工作</button>
+					<button class="btn" id="scene3">休闲</button>
+				</div>
+			</div>
+			<div class="page " id="music">
+				<div class="content">
+					<button class="btn" id="music1" data-id="1">轻盈</button>
+					<button class="btn" id="music2" data-id="2">舒缓</button>
+					<button class="btn" id="music3" data-id="3">激情</button>
+				</div>
+			</div>
+			<div class="page " id="coffee">
+				<div class="content">
+					<div class="coffeeUser"></div>
+					<div class="dialog1"></div>
+					<div class="dialog2"></div>
+					<div class="dialog3"></div>
+					<div class="dialog4"></div>
+					<button class="btn" id="nextRule">来喝一杯</button>
+				</div>
+			</div>
+			
+			<div class="page " id="rule">
+				<iframe src="rule.html" width="100%" height="100%"></iframe>
+			</div>
+
+		</div>
+		<script src="js/indexJs.js"></script>
+		<script>
+			const audio = document.querySelector("audio")
+			const box = document.querySelector(".box")
+			const pages = document.querySelector(".pages");
+			pages.style.height = window.innerHeight + "px";
+			box.addEventListener("click", function() {
+				if (audio.paused) {
+					audio.play()
+					box.classList.add("boxPlay")
+				} else {
+					audio.pause()
+					box.classList.remove("boxPlay")
+				}
+			})
+			
+		</script>
+	</body>
+</html>

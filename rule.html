@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link type="text/css" rel="stylesheet" href="css/indexStyle.css" />
+		<style>
+			#one {
+				background-image: url(static/bar/rule/scenarioone/33-11.png);
+				background-repeat: no-repeat;
+				overflow: hidden;
+				background-size: 100% 100%;
+				position: relative;
+			}
+
+			.oneH1 {
+				background-image: url(static/bar/rule/scenarioone/331-11.png);
+				background-repeat: no-repeat;
+				background-size: 65% auto;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 6%;
+				/* right: -10%; */
+				animation: fall 2s ease;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+				opacity: 0;
+			}
+
+			.oneUser {
+				background-image: url(static/bar/rule/scenarioone/334-11.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				right: -10%;
+				animation: opacity 2s 3s ease;
+				animation-fill-mode: forwards;
+				animation-iteration-count: 1;
+				opacity: 0;
+			}
+
+			#two {
+				background-image: url(static/bar/rule/scenariotwo/22-11.png);
+				background-repeat: no-repeat;
+				overflow: hidden;
+				background-size: 100% 100%;
+				position: relative;
+			}
+
+			.twoH1 {
+				background-image: url(static/bar/rule/scenariotwo/23-11.png);
+				background-repeat: no-repeat;
+				background-size: 65% auto;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 7%;
+				right: -38%;
+				animation: fall 2s ease;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
+
+			.twoUser {
+				background-image: url(static/bar/rule/scenariotwo/24-11.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				/* right: -15%; */
+
+				animation: opacity 2s 3s ease;
+				animation-fill-mode: forwards;
+				animation-iteration-count: 1;
+				opacity: 0;
+			}
+
+			#three {
+				background-image: url(static/bar/rule/scenariothree/44-11.png);
+				background-repeat: no-repeat;
+				overflow: hidden;
+				background-size: 100% 100%;
+				position: relative;
+			}
+
+			.threeH1 {
+				background-image: url(static/bar/rule/scenariothree/441-11.png);
+				background-repeat: no-repeat;
+				background-size: 65% auto;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 8%;
+				right: -40%;
+				animation: fall 2s ease;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
+
+			.threeUser {
+				background-image: url(static/bar/rule/scenariothree/443-11.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 10%;
+				left: -5%;
+				animation: opacity 2s 3s ease;
+				animation-fill-mode: forwards;
+				animation-iteration-count: 1;
+				opacity: 0;
+			}
+
+			#reset {
+				position: absolute;
+				left: 35%;
+				right: 35%;
+				bottom: 8%;
+
+				opacity: 0;
+			}
+			.wrapper {
+				height: 20px;
+				border: 1px solid black;
+				border-radius: 50px;
+				margin: 0 auto;
+				overflow: hidden;
+				position: absolute;
+				bottom: 28%;
+				left: 30%;
+				right: 30%;
+			}
+			
+			.first {
+				height: 20px;
+				line-height: 20px;
+				background-color: rgb(232,159,80);
+				border-radius: 50px;
+				position: relative;
+				overflow: hidden;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="pages">
+			<div class="page active" id="jump">
+				<div class="content">
+					<div class="wrapper">
+						<div id="jd" class="first">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="one" class="page">
+				<div class="oneH1"></div>
+				<div class="oneUser"></div>
+			</div>
+			<div id="two" class="page">
+				<div class="twoH1"></div>
+				<div class="twoUser"></div>
+			</div>
+			<div id="three" class="page">
+				<div class="threeH1"></div>
+				<div class="threeUser"></div>
+			</div>
+		</div>
+		<button class="btn" id="reset">重新体验</button>
+	</body>
+	<script>
+		const page = document.querySelectorAll(".page")
+		const pages = document.querySelector(".pages")
+		let time
+		const reset = document.querySelector("#reset")
+		function getNum() {
+			return Math.floor(Math.random() * page.length)
+		}
+		const btn = document.querySelector("#reset")
+		reset.addEventListener("click", function() {
+			
+			window.location.href = "index.html"
+		})
+		let num = getNum();
+		
+		function setJd(){
+			var width = 0;
+			var timer;
+			var _jd = document.getElementById("jd"); 
+			timer = setInterval(function() {
+				width += 1;
+				_jd.innerText = width + '%';
+				if (width >= 100) {
+					clearInterval(timer);
+					document.querySelector(".active").classList.remove("active");
+					page[num].classList.add("active");
+					_jd.innerText = "加载完成";
+					reset.style.animation = "opacity 2s 8s ease";
+					reset.style.animationIterationCount = "1";
+					reset.style.animationFillMode = "forwards";
+				}
+				document.getElementsByClassName("first")[0].style.width = width + "%";
+			}, 30);
+		}
+		// setTimeout(setJd,20000)
+		time = setInterval(function(){
+			if(pages.clientHeight != 0){
+				setJd()
+				clearInterval(time)
+			}else{
+				
+			}
+		},500)
+	</script>
+</html>
