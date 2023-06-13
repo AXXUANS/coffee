@@ -492,7 +492,7 @@
     background-size: 100% 100%;
     position: absolute;
     top: -2%;
-    animation: opacity 2s 6.5s ease;
+    animation: opacity 1s 3.5s ease;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     opacity: 0;
@@ -506,7 +506,7 @@
     position: absolute;
     top: -2%;
     left: 0;
-    animation: opacity 2s 7.5s ease;
+    animation: opacity 1s 4.5s ease;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     opacity: 0;
